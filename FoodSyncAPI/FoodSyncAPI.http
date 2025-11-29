@@ -1,0 +1,6 @@
+@FoodSyncAPI_HostAddress = http://localhost:5208
+
+GET {{FoodSyncAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
