@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FoodSyncAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+287e28ab1f9f572b91431b3fc4825a4aa9fa4870")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be4f8a32c449d9038b17d120bf58ab754726dcb7")]
 [assembly: System.Reflection.AssemblyProductAttribute("FoodSyncAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FoodSyncAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -2,6 +2,7 @@
 using FoodSyncAPI.Models;
 using FoodSyncAPI.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodSyncAPI.Controllers
 {
@@ -16,54 +17,70 @@ namespace FoodSyncAPI.Controllers
             this.dbContext = dbContext;
         }
 
+        // GET all orders with items + menu items
         [HttpGet]
         public IActionResult GetAllOrders()
         {
-            var allorders = dbContext.Orders.ToList();
-            return Ok(allorders);
+            var allOrders = dbContext.Orders
+                .Include(o => o.Items)
+                    .ThenInclude(oi => oi.MenuItem)
+                .ToList();
+            return Ok(allOrders);
         }
 
+        // GET order by id with items + menu items
         [HttpGet("{id}")]
         public IActionResult GetOrder(int id)
         {
-            var order = dbContext.Orders.Find(id);
+            var order = dbContext.Orders
+                .Include(o => o.Items)
+                    .ThenInclude(oi => oi.MenuItem)
+                .FirstOrDefault(o => o.Id == id);
+
             if (order == null)
-            {
                 return NotFound();
-            }
 
             return Ok(order);
         }
 
+        // POST new order
         [HttpPost]
         public IActionResult AddOrder(OrderDto dto)
         {
             if (dto == null)
                 return BadRequest();
 
-var order = new Order
-    {
-        UserId = dto.UserId,
-        Status = "pending",
-        Items = dto.Items.Select(i => new OrderItem
-        {
-            MenuItem = i.MenuItem,
-            Quantity = i.Quantity,
-            Notes = i.Notes
-        }).ToList()
-    };
+            var order = new Order
+            {
+                UserId = dto.UserId,
+                Status = "pending",
+                Items = dto.Items.Select(i => new OrderItem
+                {
+                    MenuItemId = i.MenuItemId,
+                    Quantity = i.Quantity,
+                    Notes = i.Notes
+                }).ToList()
+            };
 
             dbContext.Orders.Add(order);
             dbContext.SaveChanges();
 
-            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
+            // Reload order with items + menu items
+            var orderWithItems = dbContext.Orders
+                .Include(o => o.Items)
+                    .ThenInclude(oi => oi.MenuItem)
+                .FirstOrDefault(o => o.Id == order.Id);
+
+            return CreatedAtAction(nameof(GetOrder), new { id = orderWithItems.Id }, orderWithItems);
         }
 
+        // PUT: update order or items
         [HttpPut("{id}")]
-
         public IActionResult AddOrderItem(int id, OrderDto dto)
         {
-            var order = dbContext.Orders.Find(id);
+            var order = dbContext.Orders
+                .Include(o => o.Items)
+                .FirstOrDefault(o => o.Id == id);
 
             if (order == null)
                 return NotFound();
@@ -71,53 +88,63 @@ var order = new Order
             if (order.Status != "pending")
                 return BadRequest("Only pending orders can be edited");
 
-// 1️⃣ Update UserId if provided
-    if (dto.UserId != 0) 
-        order.UserId = dto.UserId;
+            // Update userId
+            if (dto.UserId != 0)
+                order.UserId = dto.UserId;
 
-    // 2️⃣ Update existing items
-    foreach (var itemDto in dto.Items)
-    {
-        if (itemDto.Id != 0) // existing item
-        {
-            var existingItem = order.Items.FirstOrDefault(i => i.Id == itemDto.Id);
-            if (existingItem != null)
+            // Update or add items
+            foreach (var itemDto in dto.Items)
             {
-                    existingItem.MenuItem = itemDto.MenuItem;
+                if (itemDto.Id != 0)
+                {
+                    var existingItem = order.Items.FirstOrDefault(i => i.Id == itemDto.Id);
+                    if (existingItem != null)
+                    {
+                        if (itemDto.Quantity > 0)
+                            existingItem.Quantity = itemDto.Quantity;
 
-                if (itemDto.Quantity > 0)
-                    existingItem.Quantity = itemDto.Quantity;
+                        if (!string.IsNullOrEmpty(itemDto.Notes))
+                            existingItem.Notes = itemDto.Notes;
 
-                if (!string.IsNullOrEmpty(itemDto.Notes))
-                    existingItem.Notes = itemDto.Notes;
+                        if (itemDto.MenuItemId != 0)
+                            existingItem.MenuItemId = itemDto.MenuItemId;
+                    }
+                    else
+                    {
+                        return BadRequest($"Item with Id {itemDto.Id} does not exist");
+                    }
+                }
+                else
+                {
+                    // Add new item
+                    order.Items.Add(new OrderItem
+                    {
+                        MenuItemId = itemDto.MenuItemId,
+                        Quantity = itemDto.Quantity,
+                        Notes = itemDto.Notes
+                    });
+                }
             }
-            else
-            {
-                return BadRequest($"Item with Id {itemDto.Id} does not exist");
-            }
-        }
-        else
-        {
-            // Optional: add new item if you want
-            order.Items.Add(new OrderItem
-            {
-                MenuItem = itemDto.MenuItem,
-                Quantity = itemDto.Quantity,
-                Notes = itemDto.Notes
-            });
-        }
-    }
-
 
             dbContext.SaveChanges();
-            return Ok(order);
+
+            // Reload with menu items
+            var updatedOrder = dbContext.Orders
+                .Include(o => o.Items)
+                    .ThenInclude(oi => oi.MenuItem)
+                .FirstOrDefault(o => o.Id == order.Id);
+
+            return Ok(updatedOrder);
         }
 
+        // PUT: update order status
         [HttpPut("{id}/status")]
-
-        public IActionResult UpdateOrderStatus( int id, OrderWithStatusDto dto)
+        public IActionResult UpdateOrderStatus(int id, OrderWithStatusDto dto)
         {
-            var order = dbContext.Orders.Find(id);
+            var order = dbContext.Orders
+                .Include(o => o.Items)
+                    .ThenInclude(oi => oi.MenuItem)
+                .FirstOrDefault(o => o.Id == id);
 
             if (order == null)
                 return NotFound();
@@ -127,24 +154,22 @@ var order = new Order
 
             var validTransitions = new Dictionary<string, List<string>>
             {
-        { "pending", new List<string> { "preparing", "done" } },
-        { "preparing", new List<string> { "done" } },
-        { "done", new List<string>() },
-        { "served", new List<string>() } 
+                { "pending", new List<string> { "preparing", "done" } },
+                { "preparing", new List<string> { "done" } },
+                { "done", new List<string>() },
+                { "served", new List<string>() }
             };
 
             if (!validTransitions.ContainsKey(oldStatus) ||
                 !validTransitions[oldStatus].Contains(newStatus))
             {
-                return BadRequest($"Cannot change status from '{order.Status}' to '{dto.Status}'");
+                return BadRequest($"Cannot change status from '{oldStatus}' to '{newStatus}'");
             }
 
-            order.Status = dto.Status;
+            order.Status = newStatus;
             dbContext.SaveChanges();
 
             return Ok(order);
         }
-
     }
-
 }
