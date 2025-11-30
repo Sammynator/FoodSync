@@ -1,4 +1,4 @@
-﻿namespace FoodSyncAPI.Models
+﻿namespace FoodSyncAPI.Models.Entities
 {
     public class User
     {

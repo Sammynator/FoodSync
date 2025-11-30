@@ -1,9 +1,9 @@
-﻿namespace FoodSyncAPI.Models
+﻿namespace FoodSyncAPI.Models.Entities
 {
     public class OrderItem
     {
             public int Id { get; set; }
-            public string MenuItem { get; set; }
+            public MenuItem MenuItem { get; set; }
             public int Quantity { get; set; }
             public string Notes { get; set; }
         }

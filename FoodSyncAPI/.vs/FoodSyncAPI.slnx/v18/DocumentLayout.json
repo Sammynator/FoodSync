@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|c:\\users\\user\\documents\\foodsync\\foodsyncapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|c:\\users\\user\\documents\\foodsync\\foodsyncapi\\controllers\\menuitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|solutionrelative:controllers\\menuitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|c:\\users\\user\\documents\\foodsync\\foodsyncapi\\models\\menuitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|solutionrelative:models\\menuitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|c:\\users\\user\\documents\\foodsync\\foodsyncapi\\models\\entities\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|solutionrelative:models\\entities\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|c:\\users\\user\\documents\\foodsync\\foodsyncapi\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|solutionrelative:controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|c:\\users\\user\\documents\\foodsync\\foodsyncapi\\models\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|solutionrelative:models\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|c:\\users\\user\\documents\\foodsync\\foodsyncapi\\models\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA64540E-6613-7A04-03E7-4263B1DF6CE0}|FoodSyncAPI.csproj|solutionrelative:models\\entities\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,24 +42,84 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAiwBgAAAAHAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "MenuItemDto.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Models\\MenuItemDto.cs",
+              "RelativeDocumentMoniker": "Models\\MenuItemDto.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Models\\MenuItemDto.cs",
+              "RelativeToolTip": "Models\\MenuItemDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-29T20:48:06.977Z",
+              "WhenOpened": "2025-11-30T18:26:22.9Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrdersController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T18:17:30.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Models\\Entities\\OrderItem.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\OrderItem.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Models\\Entities\\OrderItem.cs",
+              "RelativeToolTip": "Models\\Entities\\OrderItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T18:16:30.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Models\\Entities\\Order.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\Order.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Models\\Entities\\Order.cs",
+              "RelativeToolTip": "Models\\Entities\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T18:15:27.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MenuItem.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Models\\Entities\\MenuItem.cs",
+              "RelativeDocumentMoniker": "Models\\Entities\\MenuItem.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Models\\Entities\\MenuItem.cs",
+              "RelativeToolTip": "Models\\Entities\\MenuItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T18:15:11.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MenuItemsController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Controllers\\MenuItemsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MenuItemsController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\FoodSync\\FoodSyncAPI\\Controllers\\MenuItemsController.cs",
+              "RelativeToolTip": "Controllers\\MenuItemsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T17:32:12.887Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         }
