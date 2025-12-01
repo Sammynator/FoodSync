@@ -1,0 +1,85 @@
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Layout for new item form */
+.new-item-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.new-item-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+.new-item-form input[type="text"],
+.new-item-form input[type="number"] {
+  padding: 6px 8px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  min-width: 160px;
+}
+.new-item-form button {
+  background-color: #0b5cff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.new-item-form button:hover { filter: brightness(0.95); }
+
+/* Grid of menu cards */
+.menu-list { width: 100%; }
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.menu-item-card {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(16,24,40,0.04), 0 1px 2px rgba(16,24,40,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.card-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #111827;
+}
+.card-price {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  font-weight: 600;
+  color: #0b5cff;
+}
+.card-actions { margin-top: 10px; display:flex; gap:8px; }
+.btn { padding: 6px 10px; border-radius: 6px; cursor: pointer; border: none; }
+.btn-delete { background:#ef4444; color:#fff; }
+.btn-delete:hover { filter: brightness(0.95); }
+
+/* Responsive tweaks */
+@media (max-width: 500px) {
+  .new-item-form { flex-direction: column; align-items: stretch; }
+  .new-item-form input { width: 100%; }
+}

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface MenuItem {
   id: number;
@@ -27,13 +28,19 @@ export interface Order {
   providedIn: 'root'
 })
 export class FoodSyncService {
-  private apiUrl = 'https://localhost:5208/api'; 
+  private apiUrl = `${environment.apiURL}/api`; 
 
   constructor(private http: HttpClient) { }
 
-  // Menu Items
+  // -------------------
+  // Menu Items CRUD
+  // -------------------
   getMenuItems(): Observable<MenuItem[]> {
     return this.http.get<MenuItem[]>(`${this.apiUrl}/MenuItems`);
+  }
+
+  getMenuItem(id: number): Observable<MenuItem> {
+    return this.http.get<MenuItem>(`${this.apiUrl}/MenuItems/${id}`);
   }
 
   addMenuItem(menuItem: {name: string, price: number}): Observable<MenuItem> {
@@ -48,7 +55,9 @@ export class FoodSyncService {
     return this.http.delete<void>(`${this.apiUrl}/MenuItems/${id}`);
   }
 
-  // Orders
+  // -------------------
+  // Orders CRUD
+  // -------------------
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.apiUrl}/Orders`);
   }
@@ -57,11 +66,21 @@ export class FoodSyncService {
     return this.http.get<Order>(`${this.apiUrl}/Orders/${id}`);
   }
 
-  addOrder(order: {userId: number, items: {menuItemId: number, quantity: number, notes: string}[]}): Observable<Order> {
+  addOrder(order: {userId: number, items: {menuItemId: number, quantity: number, notes?: string}[]}): Observable<Order> {
     return this.http.post<Order>(`${this.apiUrl}/Orders`, order);
   }
 
-  updateOrderStatus(id: number, status: string): Observable<Order> {
-    return this.http.put<Order>(`${this.apiUrl}/Orders/${id}/status`, { status });
+  updateOrder(id: number, updatedOrder: {userId?: number, items: {id?: number, menuItemId?: number, quantity?: number, notes?: string}[]}): Observable<Order> {
+    return this.http.put<Order>(`${this.apiUrl}/Orders/${id}`, updatedOrder);
+  }
+
+// In FoodSyncService
+updateOrderStatus(id: number, payload: { status: string }): Observable<Order> {
+  return this.http.put<Order>(`${this.apiUrl}/Orders/${id}/status`, payload);
+}
+
+
+  deleteOrder(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/Orders/${id}`);
   }
 }

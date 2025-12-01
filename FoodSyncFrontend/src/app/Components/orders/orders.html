@@ -1,1 +1,101 @@
-<p>orders works!</p>
+<div class="orders-header">
+		<h2>Orders</h2>
+		<div>
+			<button class="btn-refresh" (click)="loadOrders()">Refresh</button>
+			<button class="btn-refresh" style="margin-left:8px;" (click)="openNewOrder()">New Order</button>
+			<a routerLink="/menu-items" class="btn-add-menu" style="margin-left:8px;">Add Menu Item</a>
+		</div>
+</div>
+
+<div *ngIf="showNewOrderPanel" class="new-order-panel">
+	<h3>New Order</h3>
+	<label>
+		User ID:
+		<input type="number" [(ngModel)]="newOrderUserId" />
+	</label>
+
+	<div class="add-item-row">
+		<select [(ngModel)]="newOrderSelectedItemId">
+			<option [ngValue]="null">Select menu item...</option>
+			<option *ngFor="let m of menuItems" [ngValue]="m.id">{{ m.name }} — {{ m.price | number:'1.2-2' }} €</option>
+		</select>
+		<button (click)="addItemToNewOrder()">Add Item</button>
+	</div>
+
+	<div class="new-order-items">
+		<div *ngFor="let it of newOrderItems; let i = index" class="new-order-item">
+			<div class="item-name">{{ it.name }}</div>
+			<div>
+				<input type="number" [(ngModel)]="newOrderItems[i].quantity" min="1" />
+				<button (click)="removeNewOrderItem(i)">Remove</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="new-order-actions">
+		<button (click)="saveNewOrder()">Save Order</button>
+		<button (click)="showNewOrderPanel=false">Cancel</button>
+	</div>
+</div>
+
+<div class="orders-list">
+	<div class="orders-grid">
+		<div *ngFor="let order of orders" class="order-card">
+			<div class="order-card-actions" style="text-align:right;">
+				<button class="btn" (click)="startEdit(order)">Edit</button>
+			</div>
+
+			<!-- Edit panel for this order -->
+			<div *ngIf="currentEditingOrder && currentEditingOrder.id === order.id" class="edit-panel">
+				<h4>Editing Order #{{ order.id }}</h4>
+				<label>User ID: <input type="number" [(ngModel)]="currentEditingOrder.userId" /></label>
+				<div class="add-item-row">
+					<select [(ngModel)]="editSelectedItemId">
+						<option [ngValue]="null">Select menu item...</option>
+						<option *ngFor="let m of menuItems" [ngValue]="m.id">{{ m.name }} — {{ m.price | number:'1.2-2' }} €</option>
+					</select>
+					<button (click)="addItemToEdit()">Add Item</button>
+				</div>
+				<div *ngFor="let it of currentEditingOrder.items; let i = index" class="new-order-item">
+					<div class="item-name">{{ it.menuItem?.name || 'Item' }}</div>
+					<div>
+						<input type="number" [(ngModel)]="currentEditingOrder.items[i].quantity" min="1" />
+						<button (click)="removeEditItem(i)">Remove</button>
+					</div>
+				</div>
+				<div class="new-order-actions">
+					<button (click)="saveEdit()">Save Changes</button>
+					<button (click)="cancelEditMode()">Cancel</button>
+				</div>
+			</div>
+
+			<div class="order-top">
+				<div class="order-id">Order #{{ order.id }}</div>
+				<div class="order-user">User: {{ order.userId }}</div>
+			</div>
+
+			<div class="order-middle">
+				<div class="order-items">
+					<div *ngFor="let it of order.items" class="order-item">
+						<div class="item-name">{{ it.menuItem?.name || 'Unknown item' }}</div>
+						<div class="item-qty">x{{ it.quantity }}</div>
+						<div class="item-price">{{ (it.menuItem?.price || 0) | number:'1.2-2' }} €</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="order-bottom">
+					<div class="order-total">Total: {{ totalForOrder(order) | number:'1.2-2' }} €</div>
+
+					<div class="order-actions">
+						<div class="status-badge">{{ order.status | titlecase }}</div>
+						<select [(ngModel)]="editedStatus[order.id]">
+							<option *ngFor="let s of statuses" [ngValue]="s.value">{{ s.label }}</option>
+						</select>
+						<button class="btn" (click)="saveStatus(order)">Save Status</button>
+						<button class="btn btn-delete" (click)="deleteOrder(order.id)">Delete</button>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>

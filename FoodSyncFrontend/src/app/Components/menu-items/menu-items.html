@@ -1,8 +1,28 @@
 <h2>Menu Items</h2>
 
-<div *ngFor="let item of menuItems" class="menu-item">
-  <p><strong>Name:</strong> {{ item.name }}</p>
-  <p><strong>Price:</strong> {{ item.price }}</p>
-  <button (click)="deleteMenuItem(item.id)">Delete</button>
-  <hr>
+<div class="new-item-form">
+  <h3>Create new menu item</h3>
+  <label>
+    Title:
+    <input type="text" [(ngModel)]="newName" placeholder="Enter title" />
+  </label>
+  <label>
+    Price:
+    <input type="number" [(ngModel)]="newPrice" placeholder="0.00" />
+  </label>
+  <button (click)="saveNewItem()">Save</button>
+</div>
+
+<div class="menu-list">
+  <div class="menu-grid">
+    <div *ngFor="let item of menuItems" class="menu-item-card">
+      <div class="card-row">
+        <div class="card-title">{{ item.name }}</div>
+        <div class="card-price">{{ item.price | number:'1.2-2' }} €</div>
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-delete" (click)="deleteMenuItem(item.id)">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>

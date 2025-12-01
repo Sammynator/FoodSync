@@ -1,0 +1,57 @@
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Orders component styles - match menu-items look */
+.orders-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.orders-header h2 { margin:0; }
+.btn-refresh { background:#0b5cff; color:#fff; border:none; padding:6px 10px; border-radius:6px; cursor:pointer; }
+
+.orders-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+.order-card { background:#fff; border:1px solid #e6e6e6; border-radius:8px; padding:12px; box-shadow:0 1px 3px rgba(16,24,40,0.04); display:flex; flex-direction:column; gap:8px; }
+.order-top { display:flex; justify-content:space-between; align-items:center; }
+.order-id { font-weight:700; }
+.order-user { color:#6b7280; font-size:13px; }
+.order-middle { border-top:1px dashed #e5e7eb; padding-top:8px; }
+.order-item { display:flex; justify-content:space-between; gap:8px; padding:6px 0; align-items:center; }
+.item-name { font-weight:600; }
+.item-qty { color:#6b7280; }
+.item-price { font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; color:#0b5cff; font-weight:600; }
+.order-bottom { display:flex; justify-content:space-between; align-items:center; margin-top:8px; }
+.order-total { font-weight:700; }
+.order-actions { display:flex; gap:8px; align-items:center; }
+.order-actions select { padding:6px 8px; border-radius:6px; border:1px solid #d1d5db; }
+.btn-delete { background:#ef4444; color:#fff; border:none; padding:6px 10px; border-radius:6px; cursor:pointer; }
+
+@media (max-width:500px) {
+  .orders-header { flex-direction:column; align-items:flex-start; gap:8px; }
+}
+
+/* header add menu link */
+.btn-add-menu { display:inline-block; padding:6px 10px; border-radius:6px; background:#06b6d4; color:#fff; text-decoration:none; }
+
+/* status badge */
+.status-badge { background:#f3f4f6; color:#111827; padding:4px 8px; border-radius:6px; font-weight:600; margin-right:6px; }
+
+/* New order panel styles */
+.new-order-panel { background:#fff; border:1px solid #e6e6e6; padding:12px; border-radius:8px; margin-bottom:12px; }
+.new-order-panel label { display:block; margin-bottom:8px; }
+.add-item-row { display:flex; gap:8px; align-items:center; margin-bottom:8px; }
+.add-item-row select { padding:6px 8px; border-radius:6px; border:1px solid #d1d5db; }
+.add-item-row button { padding:6px 8px; border-radius:6px; background:#0b5cff; color:#fff; border:none; cursor:pointer; }
+.new-order-items { margin-top:8px; }
+.new-order-item { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px dashed #f1f5f9; }
+.new-order-item input { width:72px; padding:6px; border-radius:6px; border:1px solid #d1d5db; }
+.new-order-actions { margin-top:10px; display:flex; gap:8px; }
+.new-order-actions button { padding:8px 10px; border-radius:6px; border:none; cursor:pointer; }
+.new-order-actions button:first-child { background:#10b981; color:#fff; }
+.new-order-actions button:last-child { background:#ef4444; color:#fff; }
+
